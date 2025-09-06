@@ -44,7 +44,7 @@ categorical_features = ["education"]
 
 preprocessor = ColumnTransformer([
     ("num", StandardScaler(), numeric_features),
-    ("cat", OneHotEncoder(sparse=False, handle_unknown="ignore"), categorical_features)
+    ("cat", OneHotEncoder(sparse_output=False, handle_unknown="ignore"), categorical_features)
 ])
 
 X_transformed = preprocessor.fit_transform(X)
