@@ -23,8 +23,8 @@ df = pd.DataFrame(data)
 
 # Create a salary column with some noise, dependent on other features
 df['Salary'] = (
-    15000 + 
-    df['Years_of_Experience'] * 5000 + 
+    15000 +
+    df['Years_of_Experience'] * 5000 +
     df['Education_Level'].apply(lambda x: {'Bachelor': 10000, 'Master': 25000, 'PhD': 50000}[x]) +
     df['City'].apply(lambda x: {'New York': 8000, 'London': 5000, 'Berlin': 3000, 'Tokyo': 7000}[x]) +
     np.random.normal(0, 10000, 1000)
@@ -87,15 +87,15 @@ if st.button("Predict Salary"):
         city_encoded = le_city.transform([city])[0]
 
         # Create a DataFrame for the user's input
-        input_data = pd.DataFrame([[years_exp, education_encoded, city_encoded]], 
+        input_data = pd.DataFrame([[years_exp, education_encoded, city_encoded]],
                                   columns=['Years_of_Experience', 'Education_Level_Encoded', 'City_Encoded'])
-        
+
         # Scale the input data using the same scaler used for training
         input_scaled = scaler.transform(input_data)
-        
+
         # Make the prediction
         predicted_salary = model.predict(input_scaled)[0][0]
-        
+
         # Display the result
         st.success(f"### The predicted salary is: ${predicted_salary:,.2f}")
     except Exception as e:
@@ -106,14 +106,14 @@ st.write("---")
 st.subheader("How to Run This App")
 st.info(
     """
-    1.  **Save the code:** Save the code above into a file named `app.py`.
-    2.  **Install libraries:** Open your terminal or command prompt and run the following command:
+    1.  **Save the code:** Save the code above into a file named `salary_app.py`.
+    2.  **Install libraries:** Open your terminal or command prompt and run the following command to install all required libraries:
         ```
         pip install streamlit numpy pandas scikit-learn tensorflow
         ```
-    3.  **Run the app:** From the same directory where you saved `app.py`, run this command:
+    3.  **Run the app:** From the same directory where you saved `salary_app.py`, run this command:
         ```
-        streamlit run app.py
+        streamlit run salary_app.py
         ```
     4.  **View in browser:** Your web browser will open a new tab with the application.
     """
