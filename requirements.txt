@@ -1,0 +1,5 @@
+streamlit
+pandas
+numpy
+scikit-learn
+tensorflow   # only if you want to train or load Keras ANN models
